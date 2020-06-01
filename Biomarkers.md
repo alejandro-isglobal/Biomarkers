@@ -1,20 +1,35 @@
 Statistical Analysis of Biomarkers
 ========================================================
-author: Alejandro Cáceres, Phd
+author: Alejandro Cáceres, PhD
 date: 10th of June 2020
 autosize: true
 
-First Slide
+
+
+Presentation
 ========================================================
 
-For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+Barcelona Institute of Global Health <https://www.isglobal.org/>:
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+<img src="./Biomarkers-figure/isglobal.png" style="width:30%"  align="center">
 
-Slide With Code
+- Research institution/think tank on global health
+- Parc de Recera Biomedica de Barcelona (PRBB) and Hospital Clinic
+
+
+
+Presentation
 ========================================================
+<br />
+- Senior statistician in the Bioinformatics group 
+- Over 13 years of experience analysing biomedical data
+- Develop novel analysis methods for biomarker discovery
+- High dimensional data including imaging and omic data: genomic, transcriptomic, exposomic, etc.
+- I write scientific articles and implement methods in software packages (R/Matlab).
+
+Presentation
+========================================================
+
 
 
 ```r
