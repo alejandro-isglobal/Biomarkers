@@ -774,9 +774,21 @@ I downloaded the data from [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?
 ```{r}
 library(sva)
 library(limma)
+library(repmis)   
+
+source_data("https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/psoriasis.RData")
+
+load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/pred.Rdata"))
     
-load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/pred.Rdata"))
-    
+pred <- getURL("https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/pred.Rdata", ssl.verifyhost=FALSE, ssl.verifypeer=FALSE)
+
+
+githubURL <- "https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/pred.Rdata"
+load(url(githubURL))
+head(df)
+
+
+
 dim(expr)
 expr[1:5,1:5]
 ```

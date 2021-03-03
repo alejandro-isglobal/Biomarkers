@@ -833,6 +833,6 @@ I downloaded the data from [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?
 
 
 ```
-Error in load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/pred.Rdata")) : 
-  la entrada no comienza con un número mágico compatible con la carga desde una conección
+Error in load(data, envir = envir, ...) : 
+  número mágico de archivo de restauración inválido (el archivo puede estar dañado) -- ningún dato recargado
 ```
