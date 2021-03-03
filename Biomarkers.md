@@ -833,6 +833,6 @@ I downloaded the data from [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?
 
 
 ```
-Error in load(data, envir = envir, ...) : 
-  número mágico de archivo de restauración inválido (el archivo puede estar dañado) -- ningún dato recargado
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  URL using bad/illegal format or missing URL
 ```

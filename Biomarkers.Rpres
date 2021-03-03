@@ -776,18 +776,7 @@ library(sva)
 library(limma)
 library(repmis)   
 
-source_data("https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/psoriasis.RData")
-
-load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/pred.Rdata"))
-    
-pred <- getURL("https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/pred.Rdata", ssl.verifyhost=FALSE, ssl.verifypeer=FALSE)
-
-
-githubURL <- "https://github.com/alejandro-isglobal/Biomarkers/blob/master/data/pred.Rdata"
-load(url(githubURL))
-head(df)
-
-
+source_data("")
 
 dim(expr)
 expr[1:5,1:5]
@@ -838,14 +827,12 @@ tt <- topTable(fit, number=Inf, coef="tbrodalumab:effTRUE")
 ```
     
 ```{r, echo=FALSE, eval=FALSE}
-save(fit, tt, file="tt.RData")
+save(fit, tt, file="./data/tt.RData")
 ```
     
     
 ```{r, echo=FALSE}
-load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/tt.RData"))
-
-load("tt.RData")
+source_data("")
 ```
     
 Prediction of treatment effects
@@ -937,7 +924,7 @@ base <- phenodat[pso$subsids,"effbase"]
 prob <- pso$predictions
 t <- factor(pso$treatment+1, labels=c("placebo", "brodalumab"))
 pred <- data.frame(pasi_imp,prob,t)
-save("pred", file="pred.Rdata")
+save("pred", file="./data/pred.Rdata")
 ```
     
 - $t$ is PASI improvement $\%$
@@ -945,7 +932,7 @@ save("pred", file="pred.Rdata")
 - $t$ 1:Placebo, 2:Brodalumab
     
 ```{r}
-RCurl::getURL("https://github.com/alejandro-isglobal/Biomarkers/blob/master/pred.Rdata")
+source_data("")
 ```
     
     
