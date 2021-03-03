@@ -775,7 +775,7 @@ I downloaded the data from [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?
 library(sva)
 library(limma)
     
-load("GSE117468.Rdata")
+load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/pred.Rdata"))
     
 dim(expr)
 expr[1:5,1:5]
@@ -831,6 +831,8 @@ save(fit, tt, file="tt.RData")
     
     
 ```{r, echo=FALSE}
+load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/tt.RData"))
+
 load("tt.RData")
 ```
     
@@ -931,8 +933,7 @@ save("pred", file="pred.Rdata")
 - $t$ 1:Placebo, 2:Brodalumab
     
 ```{r}
-load("pred.Rdata")
-head(pred)
+RCurl::getURL("https://github.com/alejandro-isglobal/Biomarkers/blob/master/pred.Rdata")
 ```
     
     

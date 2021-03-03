@@ -1,6 +1,6 @@
 Statistical Analysis of Biomarkers
 ========================================================
-author: Alejandro CÃ¡ceres, PhD
+author: Alejandro Cáceres, PhD
 date: 
 autosize: true
 
@@ -196,8 +196,8 @@ B. Define the context of use **COU**
 
 C. Assessment of **benefits** and **risks** 
 
- - i.e. Benefit: Don't treat a patient who wonÂ´t benefit (specificity), treat a patient who will benefit (sensitivity). 
-- i.e. Risk: not treat a patient who could benefit, treat a patient who wonÂ´t benefit. 
+ - i.e. Benefit: Don't treat a patient who won´t benefit (specificity), treat a patient who will benefit (sensitivity). 
+- i.e. Risk: not treat a patient who could benefit, treat a patient who won´t benefit. 
 
 
 
@@ -212,7 +212,7 @@ D. Determining evidence that is **statistically** sufficient to support COU
 1. Analytical considerations: Is the test reliable?
   
   
-- validation of the Biomarkers testâ€™s technical performance
+- validation of the Biomarkers test’s technical performance
 - cost-effectives, feasability
 - assessment of measurement error 
 
@@ -401,7 +401,7 @@ When the levels of the biomaker are continous then a regression analysis can be 
     
 The type of correlation depends on the COU.
     
-LetÂ´s consider the following [study](https://www.nature.com/articles/s41398-019-0521-7):
+Let´s consider the following [study](https://www.nature.com/articles/s41398-019-0521-7):
       
 **Biomarkers for response in major depression: comparing paroxetine and venlafaxine from two randomised placebo-controlled clinical studies.** Carboni et al. *Translational psychiatry*. 2019
     
@@ -415,7 +415,7 @@ Two placebo-controlled studies evaluating the efficacy and tolerability of a nov
     
 - Two drug treatments: paroxetine or venlafaxine as active comparators
     
-- panel of peripheral biomarkers (including IL-6, IL-10, TNF-Î±, TNFRII, BDNF, CRP, MMP9 and PAI1) in depressed patients receiving paroxetine, venlafaxine, or placebo
+- panel of peripheral biomarkers (including IL-6, IL-10, TNF-a, TNFRII, BDNF, CRP, MMP9 and PAI1) in depressed patients receiving paroxetine, venlafaxine, or placebo
     
 Aim: assess the correlation between **biomarker levels** and response outcome: 17 item scale of depression symptoms; responders >50% in reduction from baseline (reduction from 2 to 1 = reduction from 10 to 5)
     
@@ -461,7 +461,7 @@ Regression analyses
 
 <img src="./Biomarkers-figure/tab2.JPG" style="width:75%"  align="center">
 
-- TNF-Î±, IL-6, IL-10 and CRP significanlty reduced with $\Delta D$ in the paroxetine  study, none in the venlafaxine.
+- TNF-a, IL-6, IL-10 and CRP significanlty reduced with $\Delta D$ in the paroxetine  study, none in the venlafaxine.
 
 - IL-10 reduced with $\Delta D$ in males in both **studies** 
 
@@ -487,9 +487,9 @@ $$B_{base|treated} \rightarrow \Delta D$$
 Adjusting by $D_{base|treated}$ and sex
     
     
-- For those treated with paroxetine: IL-10 and TNF-Î± are at baseline were significantly associated changes in depression symptoms at week 10. 
+- For those treated with paroxetine: IL-10 and TNF-a are at baseline were significantly associated changes in depression symptoms at week 10. 
     
-IL-10 and TNF-Î± showed predictive capacity under paroxetine treatment
+IL-10 and TNF-a showed predictive capacity under paroxetine treatment
     
     
 Regression analyses
@@ -519,7 +519,7 @@ $$B_{base|placebo}\times T \rightarrow \Delta D$$
       
 Adjusting by $D_{base|treated}$ and sex
     
-- For those treated with paroxetine: treatment intectiond with IL-10 and TNF-Î± showed trend to significance (P=0.054, P=0.085).
+- For those treated with paroxetine: treatment intectiond with IL-10 and TNF-a showed trend to significance (P=0.054, P=0.085).
     
 While testing for interactions requires more power, this suggests that individuals with low values of IL-10 will respond better to treatment than those with high values.
     
@@ -806,194 +806,33 @@ The question of whether the biomarkers can be used to predict Brodalumbad remain
 I downloaded the data from [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117468) to find predictors of the efficacy. 
     
 
-```r
-library(sva)
-library(limma)
-    
-load("GSE117468.Rdata")
-    
-dim(expr)
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```
-[1] 53951    96
+Error in load(url("https://github.com/alejandro-isglobal/Biomarkers/blob/master/pred.Rdata")) : 
+  la entrada no comienza con un número mágico compatible con la carga desde una conección
 ```
-
-```r
-expr[1:5,1:5]
-```
-
-```
-          GSM3300910 GSM3300916 GSM3300920 GSM3300928 GSM3300932
-1007_s_at   9.975898   8.947814  10.544516  10.088859   9.948196
-1053_at     7.264437   7.323783   6.468845   7.648613   7.304800
-117_at      6.066067   6.010792   6.373146   6.520405   6.567029
-121_at      6.037013   6.100783   6.261066   5.624866   6.403674
-1255_g_at   3.013214   2.937823   3.087177   2.914161   3.672842
-```
-    
-    
-Prediction of treatment effects
-========================================================
-
-```r
-dim(phenodat)
-```
-
-```
-[1] 96  8
-```
-
-```r
-head(phenodat)
-```
-
-```
-           age    bmi     patient          t   eff      effdif effbase effend
-GSM3300910  53 20.750 10216001001 brodalumab  TRUE  1.00000000    12.4    0.0
-GSM3300916  51 35.235 10216001004    placebo  TRUE  0.44791667    19.2   10.6
-GSM3300920  47 35.471 10216001005    placebo FALSE -0.16417910    13.4   15.6
-GSM3300928  38 33.272 10216003001 brodalumab  TRUE  0.85427136    19.9    2.9
-GSM3300932  47 36.553 10216003002    placebo FALSE -0.67980296    20.3   34.1
-GSM3300936  64 32.189 10216003003    placebo FALSE -0.08116883    30.8   33.3
-```
-    
-- <code>t=1,2</code>: placebo, Brodalumab 210mg or 140 mg. 
-- <code>effdif</code>: percentage of improvement in PASI (psoriasis area-and-severity-index) between baseline and w12 (PASI (W0-W12)/W0).
-- <code>eff=1,0</code>: PASI improvement  W12 < W0
-    
-Prediction of treatment effects
-========================================================
-Analysis 1. 
-    
-I aimed to test for which biomarkers significantly correlated with improvement in PASI (predictors of efficacy)
-    
-$$\Delta PASI*T \rightarrow B_{base}$$
-      
-      
-
-```r
-table(phenodat$eff, phenodat$t)
-```
-
-```
-       
-        placebo brodalumab
-  FALSE       9          1
-  TRUE       16         70
-```
-    
-only one individual under treatment did not improved PASI but 16 placebos improved PASI. Conditioning on the treated individuals is not suitable. Placebos still have information.    
-    
-Prediction of treatment effects
-========================================================
-      
-
-```r
-mod0 <- model.matrix( ~  t + eff  + age + bmi, data = phenodat)
-mod <- model.matrix( ~ t:eff + t + eff  + age + bmi, data = phenodat)
-ns <- num.sv(expr, mod, method="be")
-ss <- sva(expr, mod, mod0, n.sv=ns)$sv
-modss <- cbind(mod, ss)
-    
-#estimate associations
-fit <- lmFit(expr, modss)
-fit <- eBayes(fit)
-
-tt <- topTable(fit, number=Inf, coef="tbrodalumab:effTRUE")
-```
-    
-
-    
-    
-
-    
-Prediction of treatment effects
-========================================================
-      
-![plot of chunk unnamed-chunk-19](Biomarkers-figure/unnamed-chunk-19-1.png)
-    
-
-    
-    
-    
-We identified 48 genes significantly associated with efficacy when treated with brodalumab. 
-    
-Prediction of treatment effects
-========================================================
-      
-We select significant genes and asked which metabolic pathways are enriched with those genes
-    
-
-```r
-library(clusterProfiler)
-    
-mappedgenesIds <- genesentrez[rownames(tt)]
-mappedgenesIds <- unique(unlist(strsplit(mappedgenesIds, " /// ")))
-    
-    
-#run enrichment in GO
-GO <- enrichGO(gene = mappedgenesIds, 'org.Hs.eg.db', ont="MF", pvalueCutoff=0.05, pAdjustMethod="BH")
-    
-dotplot(GO)
-```
-    
-Prediction of treatment effects
-========================================================
-![plot of chunk unnamed-chunk-22](Biomarkers-figure/unnamed-chunk-22-1.png)
-    
-Prediction of treatment effects
-========================================================
-
-Analysis 2. 
-    
-I used new causal inference methods (random causal forest) that I have recently implemented for transcriptomic data. 
-    
-The method 
-    
-- builds a predictor from the transcriptiod data of the relevant genes
-- estimates the probability at baseline of the response to a potential brodalumab treatment
-- predict probabilities on 19 randomly selected individuals not used to build the predictor.       
-    
-    
-Prediction of treatment effects
-========================================================
-
-    
-- $t$ is PASI improvement $\%$
-- $p$ probability of brodalumab response
-- $t$ 1:Placebo, 2:Brodalumab
-    
-
-```r
-load("pred.Rdata")
-head(pred)
-```
-
-```
-     pasi_imp      prob          t
-1  0.08522727 0.3279899    placebo
-2  1.00000000 0.3818976 brodalumab
-3  0.92333333 0.3433848 brodalumab
-4  0.80152672 0.3193873 brodalumab
-5 -0.67980296 0.4011619    placebo
-6  0.99019608 0.3488585 brodalumab
-```
-    
-    
-Prediction of treatment effects
-========================================================
-      
-We can test the dose-response relationship between the brodalumab response at baseline (dose) and PASI improvement (response).
-    
-
-```r
-library(drc)
-met <- drm(pasi_imp ~ prob, t, fct=LL.4(), data=pred)
-plot(met, legendPos=c(0.36,-0.25))    
-```
-
-![plot of chunk unnamed-chunk-25](Biomarkers-figure/unnamed-chunk-25-1.png)
-    
-    
-    
